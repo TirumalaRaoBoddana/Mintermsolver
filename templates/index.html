@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quine-McCluskey Solver</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+</head>
+<body>
+    <div class="center">
+        <h1 class="head">Quine-McCluskey Solver</h1>
+        <form action="/submit" method="post">
+            <label for="var">Number of Variables:</label>
+            <input type="text" id="var" name="var" required placeholder="Enter number of variables">
+            <label for="minterm">Minterms (comma-separated):</label>
+            <input type="text" id="minterm" name="minterm" required placeholder="Enter minters(comma seperated)">  
+            <label for="dontcare">Don't Cares (comma-separated):</label>
+            <input type="text" id="dontcare" name="dontcare" placeholder="Enter dontcares if any">
+            <button type="submit" class="submit">Submit</button>
+        </form>
+        <p class="extra">For More imformation about Quine-McCluskey Method <a href="https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm">Click Here</a></p>
+    </div>
+</body>
+</html>
