@@ -366,5 +366,5 @@ def submitData():
             return render_template("result.html",row=2**(var//2),column=2**(var-var//2)+1,dontcares=dontcares,minterm=[int(i) for i in minterms.split(",")],ans=answer1,sol=solution,prime_implicant_chart=chart,terms=terms,implicant=res,reduced_chart=charts,reduced_minterms=reduced_minterms,expression=expression,simplified_expression=simplified_expression)
     else:
          return render_template("error.html",error="Form should be correctly filled") 
-if(__name__=="__main__"):
-    app.run(debug=True)
+# if(__name__=="__main__"):
+#     app.run(debug=True)
