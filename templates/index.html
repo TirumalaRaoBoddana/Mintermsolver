@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quine-McCluskey Solver</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: center;
+            align-items: stretch; 
+            padding: 50px;
+        }
+
+        .form-container, .steps-container {
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            margin-right: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .steps-container {
+            margin-right: 0;
+        }
+        
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+
+        .step {
+            font-size: 24px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input {
+            margin-bottom: 15px;
+        }
+
+        .submit {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 20px;
+        }
+
+        .submit:hover {
+            background-color: #0056b3;
+        }
+
+        .extra {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .extra a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .extra a:hover {
+            text-decoration: underline;
+        }
+
+        .steps ol {
+            line-height: 1.6;
+            padding-left: 20px;
+        }
+
+        .additional-info {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width: 1200px) {
+            .main-content {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .form-container, .steps-container {
+                max-width: 100%;
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 22px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-content container">
+        <div class="form-container">
+            <h1>Quine-McCluskey Solver</h1>
+            <form action="/submit" method="post">
+                <div class="form-group">
+                    <label for="var">Number of Variables:</label>
+                    <input type="text" class="form-control" id="var" name="var" required placeholder="Enter number of variables">
+                </div>
+                <div class="form-group">
+                    <label for="minterm">Minterms (comma-separated):</label>
+                    <input type="text" class="form-control" id="minterm" name="minterm" required placeholder="Enter minterms (comma separated)">
+                </div>
+                <div class="form-group">
+                    <label for="dontcare">Don't Cares (comma-separated):</label>
+                    <input type="text" class="form-control" id="dontcare" name="dontcare" placeholder="Enter don't cares if any">
+                </div>
+                <button type="submit" class="submit">Submit</button>
+            </form>
+
+            <p class="extra">For more information about the Quine-McCluskey Method <a href="https://en.wikipedia.org/wiki/Quine%E2%80%93McCluskey_algorithm" target="_blank">Click Here</a></p>
+        </div>
+        
+        <div class="steps-container">
+            <div class="steps">
+                <h2 class="step">Steps Involved in the Quine-McCluskey Algorithm</h2>
+                <ol>
+                    <li>List all the minterms (truth table combinations where the function is 1).</li>
+                    <li>Group the minterms according to the number of 1’s in their binary representation.</li>
+                    <li>Compare the minterms in successive groups and check if they differ by only one bit. If they do, combine them by eliminating the differing bit.</li>
+                    <li>Repeat the previous step until no further combinations can be made (Prime Implicants).</li>
+                    <li>Generate the Prime Implicant chart, marking which minterms are covered by which prime implicants.</li>
+                    <li>Use the Prime Implicant chart to select the essential prime implicants (those that cover minterms that are not covered by any other implicants).</li>
+                    <li>If necessary, choose additional prime implicants to cover all remaining minterms.</li>
+                    <li>Form the simplified Boolean expression using the selected prime implicants.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="container additional-info">
+        <h2>About the Quine-McCluskey Algorithm</h2>
+        <p>The Quine-McCluskey algorithm is a method for minimizing Boolean functions. It is particularly useful when dealing with functions with a large number of variables or minterms, as it provides a systematic way to simplify expressions. Unlike Karnaugh maps, which are limited to functions of six variables or fewer, the Quine-McCluskey algorithm can handle any number of variables.</p>
+        
+        <h2>Advantages</h2>
+        <ul>
+            <li>Can handle functions with many variables, making it more versatile than Karnaugh maps.</li>
+            <li>Provides a systematic approach, making it easier to understand and implement.</li>
+            <li>Can be implemented algorithmically, allowing for automation in digital design tools.</li>
+        </ul>
+
+        <h2>Disadvantages</h2>
+        <ul>
+            <li>Can be computationally intensive for functions with a very large number of minterms.</li>
+            <li>The number of prime implicants can grow rapidly, making the charting process cumbersome.</li>
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
